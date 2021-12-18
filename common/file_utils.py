@@ -1,4 +1,3 @@
-import os
 import csv
 
 FILE_ENCODING ="utf-8"
@@ -9,8 +8,8 @@ def file_writer(file_path, datas):
     f = open(file_path, "w", encoding=FILE_ENCODING)
 
     for data in datas:
-        for key, value in data.items():
-            f.write(value + NEW_LINE)
+        for i in range(len(data)):
+            f.write(data[i] + NEW_LINE)
             
         f.write(NEW_LINE)
 
@@ -18,11 +17,11 @@ def file_writer(file_path, datas):
     
     
 # csv 파일 생성
-def csv_writer(file_path, datas, titles):
-    f = open("C:/hm_py/crawling/result/rawling_hw3.csv",'w', newline='', encoding="utf-8")
+def csv_writer(file_path, datas, header):
+    f = open(file_path,'w', newline='', encoding=FILE_ENCODING)
 
     r = csv.writer(f)
-    r.writerow([titles])
+    r.writerow(header)
 
     for data in datas:
-        r.writerow([data])
+        r.writerow(data)

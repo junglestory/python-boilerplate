@@ -10,6 +10,7 @@ logger = logger.create_logger(PROJECT_NAME)
 
 def main(args):
     file_utils.file_writer()
+    file_utils.csv_writer()
 
 # 실행 옵션 설명
 def run_info():

@@ -1,0 +1,23 @@
+[2021-12-18 23:18:55,916][INFO|logger.py:26] >> 
+
+[2021-12-18 23:18:55,917][INFO|logger.py:26] >> ====== WebDriver manager ======
+[2021-12-18 23:18:56,190][INFO|logger.py:26] >> Current google-chrome version is 96.0.4664
+[2021-12-18 23:18:56,191][INFO|logger.py:26] >> Get LATEST chromedriver version for 96.0.4664 google-chrome
+[2021-12-18 23:18:56,368][INFO|logger.py:26] >> Driver [/Users/baltigo/.wdm/drivers/chromedriver/mac64/96.0.4664.45/chromedriver] found in cache
+[2021-12-18 23:19:00,485][INFO|crawl.py:64] >> Start crawling...
+[2021-12-18 23:19:08,510][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/453/NB12039453.html
+[2021-12-18 23:19:27,673][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/454/NB12039454.html
+[2021-12-18 23:19:48,284][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/455/NB12039455.html
+[2021-12-18 23:20:02,350][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/456/NB12039456.html
+[2021-12-18 23:20:14,982][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/457/NB12039457.html
+[2021-12-18 23:20:28,365][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/458/NB12039458.html
+[2021-12-18 23:20:42,181][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/471/NB12039471.html
+[2021-12-18 23:20:55,590][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/459/NB12039459.html
+[2021-12-18 23:21:17,936][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/460/NB12039460.html
+[2021-12-18 23:21:37,888][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/461/NB12039461.html
+[2021-12-18 23:21:55,753][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/462/NB12039462.html
+[2021-12-18 23:22:11,601][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/474/NB12039474.html
+[2021-12-18 23:22:26,895][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/463/NB12039463.html
+[2021-12-18 23:22:44,789][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/472/NB12039472.html
+[2021-12-18 23:23:03,425][INFO|crawl.py:43] >> Detail Url : https://news.jtbc.joins.com/html/464/NB12039464.html
+[2021-12-18 23:23:21,133][INFO|crawl.py:70] >> End

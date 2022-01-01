@@ -15,8 +15,8 @@ ARGV_COUNT = 2
 DATASOURCE = {
         "host": "127.0.0.1",
         "port": 3306,
-        "username": "root",
-        "password": "root1234",
+        "username": "dummy",
+        "password": "dummy",
         "database": "boilerplate"
     }
 

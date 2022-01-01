@@ -18,15 +18,12 @@ class JtbcCrawlManager(CrawlManager):
         items = root.find_all("li")
 
         results = []
-        index = 0
+
         for item in items:
-            if index < 1:
-                data = item.find("dt", {"class":"title_cr"})
-                link = data.find("a")
-                
-                results.append(link.get("href"))
+            data = item.find("dt", {"class":"title_cr"})
+            link = data.find("a")
             
-            index = index + 1
+            results.append(link.get("href"))
 
         return results
 

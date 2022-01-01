@@ -18,12 +18,15 @@ class JtbcCrawlManager(CrawlManager):
         items = root.find_all("li")
 
         results = []
-
+        index = 0
         for item in items:
-            data = item.find("dt", {"class":"title_cr"})
-            link = data.find("a")
+            if index < 1:
+                data = item.find("dt", {"class":"title_cr"})
+                link = data.find("a")
+                
+                results.append(link.get("href"))
             
-            results.append(link.get("href"))
+            index = index + 1
 
         return results
 
@@ -42,11 +45,11 @@ class JtbcCrawlManager(CrawlManager):
         writer = bsObject.find("dd", {"class" : "name"}).text # 작성자
         content = bsObject.find("div", {"class" : "article_content"}).text # 본문
         date_tag =bsObject.find("span" , {"class" : "artical_date"})  # 작성일 
-        reg_dates =date_tag.find_all("span")
+        publish_dates =date_tag.find_all("span")
         
-        if len(reg_dates) > 1:
-            reg_date = reg_dates[1].text  # 수정일
+        if len(publish_dates) > 1:
+            publish_date = publish_dates[1].text  # 수정일
         else:
-            reg_date = reg_dates[0].text  # 입력일
+            publish_date = publish_dates[0].text  # 입력일
 
-        return [title, writer, reg_date, content]
+        return [title, full_detail_url, writer, publish_date, content]

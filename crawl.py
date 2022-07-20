@@ -12,14 +12,6 @@ RESULT_CSV_FILE_NAME = "./result/result_{}.csv"
 HEADER = ['제목', 'URL', '작성자', '작성일', '내용']
 ARGV_COUNT = 2
 
-DATASOURCE = {
-        "host": "127.0.0.1",
-        "port": 3306,
-        "username": "dummy",
-        "password": "dummy",
-        "database": "boilerplate"
-    }
-
 # Create logger
 logger = logger.create_logger(PROJECT_NAME)
 
@@ -53,7 +45,7 @@ def crawling(manager, journal_id):
         result.append(journal_id)
         datas.append(result)
 
-    db = DatabaseManager(DATASOURCE, journal_id)
+    db = DatabaseManager(journal_id)
     db.connection()
     
     query = '''

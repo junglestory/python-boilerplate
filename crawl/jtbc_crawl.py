@@ -30,6 +30,7 @@ class JtbcCrawlManager(CrawlManager):
 
     # 상세 내용
     def detail(self, url):
+        print(url)
         full_detail_url = ROOT_URL + url
 
         self.logger.info("Detail Url : %s", full_detail_url) 

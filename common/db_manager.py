@@ -1,3 +1,6 @@
+import os
+import sys
+import yaml
 import pymysql
 import logging
 
@@ -5,19 +8,30 @@ class DatabaseManager:
     conn = None
     logger = logging.getLogger()
     
-    def __init__(self, datasource, journal_id):
-        self.datasource = datasource
-        self.journal_id = journal_id
+    def __init__(self, database_id):
+        self.database_id = database_id
+
+    
+    def datasource(self):           
+        try:
+            root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+            doc = yaml.load(open(os.path.join(root_dir, 'config', 'datasource.yml'), 'r'), Loader=yaml.SafeLoader)
+            return doc[self.database_id]
+        except IOError as e:
+            self.logger.error(e)
+            sys.exit(1)
 
 
     def connection(self):
+        datasource = datasource()
+
         try:
-            self.conn = pymysql.connect(host=self.datasource['host'], port=self.datasource['port'], 
-                                        user=self.datasource['username'], passwd=self.datasource['password'], 
-                                        db=self.datasource['database'],charset='utf8',autocommit=False)
-            self.logger.info("Connected to %s ." % self.datasource['host'])
+            self.conn = pymysql.connect(host=datasource['host'], port=datasource['port'], 
+                                        user=datasource['username'], passwd=datasource['password'], 
+                                        db=datasource['database'],charset='utf8',autocommit=False)
+            self.logger.info("Connected to %s ." % datasource['host'])
         except Exception as e:
-            self.logger.error("Failed connect to %s ." % self.datasource['host'])
+            self.logger.error("Failed connect to %s ." % datasource['host'])
             self.logger.error(e)
 
 

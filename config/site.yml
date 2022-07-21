@@ -1,0 +1,3 @@
+jtbc:
+  base_url: 'https://news.jtbc.joins.com/section/list.aspx?scode='
+  root_url: 'https://news.jtbc.joins.com'

@@ -11,24 +11,25 @@ RESULT_TEXT_FILE_NAME = "./result/result_{}.txt"
 RESULT_CSV_FILE_NAME = "./result/result_{}.csv"
 HEADER = ['제목', 'URL', '작성자', '작성일', '내용']
 ARGV_COUNT = 2
+DATASOURCE_ID = "local"
 
 # Create logger
 logger = logger.create_logger(PROJECT_NAME)
 
 # 크롤링 클래스 생성
-def create_crawl_manager(journal_id):
+def create_crawl_manager(site_id, site_info):
     # get module from module name
-    mod_name = "crawl.{}_crawl".format(journal_id)    
+    mod_name = "crawl.{}_crawl".format(site_id)    
     mod = __import__('%s' %(mod_name), fromlist=[mod_name])
     
     # get class in module
-    klass = getattr(mod, "{}CrawlManager".format(journal_id.capitalize()))
+    klass = getattr(mod, "{}CrawlManager".format(site_id.capitalize()))
     
-    return klass(driver)
+    return klass(driver, site_info)
 
 
 # 크롤링
-def crawling(manager, journal_id):
+def crawling(manager, site_id):
     urls = []
     results = []
     datas = []
@@ -38,14 +39,14 @@ def crawling(manager, journal_id):
     for url in urls:
         results.append(manager.detail(url))
 
-    file_utils.file_writer(RESULT_TEXT_FILE_NAME.format(journal_id), results)   
-    file_utils.csv_writer(RESULT_CSV_FILE_NAME.format(journal_id), results, HEADER)
+    file_utils.file_writer(RESULT_TEXT_FILE_NAME.format(site_id), results)   
+    file_utils.csv_writer(RESULT_CSV_FILE_NAME.format(site_id), results, HEADER)
 
     for result in results:
-        result.append(journal_id)
+        result.append(DATASOURCE_ID)
         datas.append(result)
 
-    db = DatabaseManager(journal_id)
+    db = DatabaseManager(DATASOURCE_ID)
     db.connection()
     
     query = '''
@@ -86,12 +87,13 @@ def crawling(manager, journal_id):
 def main(args): 
     logger.info("Start crawling...")
 
-    journal_id = args[1]
+    site_id = args[1]
 
-    if journal_id != None:
-        manager = create_crawl_manager(journal_id)
+    if site_id != None:
+        site_info = file.read_site_info(site_id)
+        manager = create_crawl_manager(site_id, site_info)
 
-        crawling(manager, journal_id)
+        crawling(manager, site_id)
         
         driver.quit()
     

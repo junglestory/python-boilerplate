@@ -1,17 +1,18 @@
 from common.crawl_manager import *
 from bs4 import BeautifulSoup as bs
 
-BASE_URL = "https://news.jtbc.joins.com/section/list.aspx?scode=" # JTBC 뉴스
-ROOT_URL = "https://news.jtbc.joins.com"
+# BASE_URL = "https://news.jtbc.joins.com/section/list.aspx?scode=" # JTBC 뉴스
+# ROOT_URL = "https://news.jtbc.joins.com"
 
 class JtbcCrawlManager(CrawlManager):
-    def __init__(self, driver):
+    def __init__(self, driver, site_info):
         self.driver = driver
+        self.site_info = site_info
        
         
     # 기사 목록
     def list(self):     
-        self.driver.get(BASE_URL)
+        self.driver.get(self.site_info['base_url'])
         bsObject = bs(self.driver.page_source, 'html.parser')
 
         root = bsObject.find("ul", {"id":"section_list"})
@@ -31,7 +32,7 @@ class JtbcCrawlManager(CrawlManager):
     # 상세 내용
     def detail(self, url):
         print(url)
-        full_detail_url = ROOT_URL + url
+        full_detail_url = self.site_info['root_url'] + url
 
         self.logger.info("Detail Url : %s", full_detail_url) 
 

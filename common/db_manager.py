@@ -23,7 +23,7 @@ class DatabaseManager:
 
 
     def connection(self):
-        datasource = datasource()
+        datasource = self.datasource()
 
         try:
             self.conn = pymysql.connect(host=datasource['host'], port=datasource['port'], 
